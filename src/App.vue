@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <div class="cards">
+
+  <Card 
+   v-for="i in store.state.posts" :key="i"
+   @click="fetchEvalotion(i)">
+    <template v-slot:title>
+        {{i.title}} 
+    </template>
+
+    <template v-slot:img>
+      {{i.content}}
+    </template>
+    <template v-slot:desc >
+  <Controls :post="i">
+       <template v-slot:Cnt>tikks</template>
+      </Controls>     
+    </template>
+  </Card>
+  </div>
+
+ 
+ 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import {store} from './Store';
+import Card from './components/Card';
+import Controls from './components/Controls.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    components:{
+        Card,
+        Controls
+    },
+    setup(){
+        return{
+            store
+        }
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
